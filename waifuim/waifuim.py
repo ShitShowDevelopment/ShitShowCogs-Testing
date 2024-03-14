@@ -16,7 +16,7 @@ class WaifuIM(commands.Cog):
 
     def __init__(self, bot):
             self.bot = bot
-            self.session: aiohttp.ClientSession = aiohttp.ClientSession()
+            self.session: aiohttp.ClientSession = aiohttp.ClientSession
                      
     async def cog_unload(self):
             self.session.close()
