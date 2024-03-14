@@ -1,6 +1,7 @@
 import discord
 
 from redbot.core import commands
+
 from waifuim import WaifuAioClient
 
 class Waifu(commands.Cog):
@@ -17,7 +18,7 @@ class Waifu(commands.Cog):
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
-        async def waifuimhelp(self, ctx):
+        async def info(self, ctx):
                 """
                 Get the help message for the WaifuIm command
                 """
@@ -60,6 +61,9 @@ class Waifu(commands.Cog):
                 e.add_field(name='Versatile Tags', value=versatile_tags, inline=True)
                 e.add_field(name='NSFW Tags', value=nsfw_tags, inline=True)
                 e.add_field(name='Example', value=command_examples, inline=False)
+                e.set_footer(text='Requested by {}'.format(ctx.author.display_name), icon_url=ctx.author.avatar_url)
+                
+                await ctx.send(embed=e)
         
         
         @commands.hybrid_command()
