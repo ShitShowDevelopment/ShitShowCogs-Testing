@@ -1,9 +1,9 @@
 {
  "author": ["ShitShowDevelopment"],
- "install_msg": "Thank you for installing our repo! If you need help, feel free to join our discord at https://dsc.gg/the-shit-show or create an issue on Github.",
- "name": "ShitShowCogs",
- "short": "Cogs for Red-DiscordBot",
- "description": "A collection of Cogs for Red-DiscordBot.",
- "requirements": [],
- "tags": ["fun", "image", "utility", "logging"]
+ "install_msg": "Thank you for installing our testing repo! This repo is strictly for those who wish to contribute new cogs. If you are not a contributor, we highly advise not using this repo.",
+ "name": "ShitShowCogs-Testing",
+ "short": "Testing repo for ShitShowCogs",
+ "description": "Build and test new cogs for ShitShowCogs. All finished cogs in this repo will be gradually pushed to ShitShowCogs by the ShitShowDevelopment Team.",
+ "requirements": ["waifuim"],
+ "tags": ["testing"]
 }
