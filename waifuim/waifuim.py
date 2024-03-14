@@ -51,7 +51,7 @@ class WaifuIM(commands.Cog):
         
     @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
-    async def tag(self, args: input, ctx):
+    async def tag(self, ctx, tag):
             """
             Get a random waifu image by tag
             Available tags:
@@ -67,8 +67,9 @@ class WaifuIM(commands.Cog):
                 - kamisato-ayaka
             """
             
+            
             url = 'https://api.waifu.im/search'
-            params = {'included_tags': '{}'.format(args), 'is_nsfw': 'false'}
+            params = {'included_tags': '{}'.format(tag), 'is_nsfw': 'false'}
             
             async with self.session.get(url, params=params) as response:
                     
@@ -176,7 +177,7 @@ class WaifuIM(commands.Cog):
     @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     @commands.is_nsfw()
-    async def ntag(self, args: input, ctx):
+    async def ntag(self, ctx, tag):
             """
             Get a random nsfw waifu image by tag
             
@@ -201,7 +202,7 @@ class WaifuIM(commands.Cog):
             """
             
             url = 'https://api.waifu.im/search'
-            params = {'included_tags': '{}'.format(args), 'is_nsfw': 'true'}
+            params = {'included_tags': '{}'.format(tag), 'is_nsfw': 'true'}
             
             async with self.session.get(url, params=params) as response:
                     
