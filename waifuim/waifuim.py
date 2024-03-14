@@ -1,7 +1,7 @@
 import discord
+import aiohttp
 
 from redbot.core import commands
-from aiohttp import ClientSession
 
 class WaifuIM(commands.Cog):
         """
@@ -10,7 +10,7 @@ class WaifuIM(commands.Cog):
 
         def __init__(self, bot):
                 self.bot = bot
-                self.session = ClientSession = ClientSession()
+                self.session = aiohttp.ClientSession = aiohttp.ClientSession()
                 
         async def cog_unload(self) -> None:
                 self.session.close()
@@ -23,13 +23,11 @@ class WaifuIM(commands.Cog):
                 Get a random waifu image
                 """
                 
-                async with ClientSession() as cs:
+                url = 'https://api.waifu.im/search'
+                params = {'is_nsfw': 'false'}
+                
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
-                                
-                                url = 'https://api.waifu.im/search'
-                                params = {
-                                        'is_nsfw': 'false'
-                                }
                                 
                                 data = await response.json()
                                 for image in data['images']:
@@ -65,14 +63,11 @@ class WaifuIM(commands.Cog):
                         - kamisato-ayaka
                 """
                 
-                async with ClientSession() as cs:
+                url = 'https://api.waifu.im/search'
+                params = {'included_tags': '{}'.format(args), 'is_nsfw': 'false'}
+                
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
-                                
-                                url = 'https://api.waifu.im/search'
-                                params = {
-                                        'included_tags': '{}'.format(args),
-                                        'is_nsfw': 'false'
-                                }
                                 
                                 data = await response.json()
                                 for image in data['images']:
@@ -96,14 +91,11 @@ class WaifuIM(commands.Cog):
                 Get a random waifu gif
                 """
                 
-                async with ClientSession() as cs:
+                url = 'https://api.waifu.im/search'
+                params = {'gif': 'true', 'is_nsfw': 'false'}
+                
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
-                                
-                                url = 'https://api.waifu.im/search'
-                                params = {
-                                        'gif': 'true',
-                                        'is_nsfw': 'false'
-                                }
                                 
                                 data = await response.json()
                                 for image in data['images']:
@@ -127,14 +119,11 @@ class WaifuIM(commands.Cog):
                 Dump a bunch of random waifu images
                 """
                 
-                async with ClientSession() as cs:
+                url = 'https://api.waifu.im/search'
+                params = {'many': 'true', 'is_nsfw': 'false'}
+                
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
-                                
-                                url = 'https://api.waifu.im/search'
-                                params = {
-                                        'many': 'true',
-                                        'is_nsfw': 'false'
-                                }
                                 
                                 data = await response.json()
                                 for image in data['images']:
@@ -159,13 +148,12 @@ class WaifuIM(commands.Cog):
                 Get a random nsfw waifu image
                 """
                 
-                async with ClientSession() as cs:
+                url = 'https://api.waifu.im/search'
+                params = {'is_nsfw': 'true'}
+                
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
-                                url = 'https://api.waifu.im/search'
-                                params = {
-                                        'is_nsfw': 'true'
-                                }
                                 
                                 data = await response.json()
                                 for image in data['images']:
@@ -208,14 +196,13 @@ class WaifuIM(commands.Cog):
                         - ecchi
                 """
                 
-                async with ClientSession() as cs:
+                url = 'https://api.waifu.im/search'
+                params = {'included_tags': '{}'.format(args), 'is_nsfw': 'true'}
+                
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
-                                url = 'https://api.waifu.im/search'
-                                params = {
-                                        'included_tags': '{}'.format(args),
-                                        'is_nsfw': 'true'
-                                }
+                                
                                 
                                 data = await response.json()
                                 for image in data['images']:
@@ -240,14 +227,11 @@ class WaifuIM(commands.Cog):
                 Get a random nsfw waifu gif
                 """
                 
-                async with ClientSession() as cs:
+                url = 'https://api.waifu.im/search'
+                params = {'gif': 'true', 'is_nsfw': 'true'}
+                
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
-                                
-                                url = 'https://api.waifu.im/search'
-                                params = {
-                                        'gif': 'true',
-                                        'is_nsfw': 'true'
-                                }
                                 
                                 data = await response.json()
                                 for image in data['images']:
@@ -272,15 +256,17 @@ class WaifuIM(commands.Cog):
                 Dump a bunch of random nsfw waifu images
                 """
                 
-                async with ClientSession() as cs:
+                url = 'https://api.waifu.im/search'
+                params = {
+                        'many': 'true',
+                        'is_nsfw': 'frue'
+                        }
+                                
+                
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
-                                url = 'https://api.waifu.im/search'
-                                params = {
-                                        'many': 'true',
-                                        'is_nsfw': 'frue'
-                                }
-                                
+
                                 data = await response.json()
                                 for image in data['images']:
                                         
