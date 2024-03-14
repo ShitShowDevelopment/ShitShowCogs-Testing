@@ -4,6 +4,6 @@
  "name": "ShitShowCogs-Testing",
  "short": "Testing repo for ShitShowCogs",
  "description": "Build and test new cogs for ShitShowCogs. All finished cogs in this repo will be gradually pushed to ShitShowCogs by the ShitShowDevelopment Team.",
- "requirements": ["waifuim"],
+ "requirements": [],
  "tags": ["testing"]
 }
