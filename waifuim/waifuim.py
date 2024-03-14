@@ -50,7 +50,7 @@ class WaifuIM(commands.Cog):
                                             label='Open Image',
                                             url=image
                                     )
-                                    view.add_item(items=button)
+                                    view.add_item(item=button)
                 
                                     await ctx.send(embed=embed, view=view)
                                 
@@ -95,7 +95,7 @@ class WaifuIM(commands.Cog):
                                             label='Open Image',
                                             url=image
                                     )
-                                    view.add_item(items=button)
+                                    view.add_item(item=button)
                 
                                     await ctx.send(embed=embed, view=view)
                                 
@@ -129,7 +129,7 @@ class WaifuIM(commands.Cog):
                                             label='Open Image',
                                             url=image
                                     )
-                                    view.add_item(items=button)
+                                    view.add_item(item=button)
                 
                                     await ctx.send(embed=embed, view=view)
                                 
@@ -163,7 +163,7 @@ class WaifuIM(commands.Cog):
                                             label='Open Image',
                                             url=image
                                     )
-                                    view.add_item(items=button)
+                                    view.add_item(item=button)
                 
                                     await ctx.send(embed=embed, view=view)
                                 
@@ -198,7 +198,7 @@ class WaifuIM(commands.Cog):
                                             label='Open Image',
                                             url=image
                                     )
-                                    view.add_item(items=button)
+                                    view.add_item(item=button)
                 
                                     await ctx.send(embed=embed, view=view)
                 
@@ -254,7 +254,7 @@ class WaifuIM(commands.Cog):
                                             label='Open Image',
                                             url=image
                                     )
-                                    view.add_item(items=button)
+                                    view.add_item(item=button)
                 
                                     await ctx.send(embed=embed, view=view)
                                 
@@ -289,7 +289,7 @@ class WaifuIM(commands.Cog):
                                             label='Open Image',
                                             url=image
                                     )
-                                    view.add_item(items=button)
+                                    view.add_item(item=button)
                 
                                     await ctx.send(embed=embed, view=view)
                                 
@@ -324,6 +324,6 @@ class WaifuIM(commands.Cog):
                                             label='Open Image',
                                             url=image
                                     )
-                                    view.add_item(items=button)
+                                    view.add_item(item=button)
                 
                                     await ctx.send(embed=embed, view=view)
