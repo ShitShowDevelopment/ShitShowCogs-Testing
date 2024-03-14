@@ -6,7 +6,7 @@ import aiohttp
 from redbot.core import commands
 from redbot.core.bot import Red
 
-footer_icon: Final[str]: 'https://avatars.githubusercontent.com/u/91619079?s=200&v=4'
+footer_icon: Final[str] = 'https://avatars.githubusercontent.com/u/91619079?s=200&v=4'
 footer_text = 'Powered by Waifu.IM API'
 
 class WaifuIM(commands.Cog):
