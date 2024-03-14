@@ -1,7 +1,7 @@
 import discord
-import waifuim
 
 from redbot.core import commands
+from waifuim import WaifuAioClient
 
 class Waifu(commands.Cog):
         """
@@ -10,10 +10,10 @@ class Waifu(commands.Cog):
 
         def __init__(self, bot):
                 self.bot = bot
-                self.session = waifuim.WaifuAioClient()
+                self.session = WaifuAioClient()
                 
-                async def cog_unload(self) -> None:
-                        self.session.close()
+        async def cog_unload(self) -> None:
+                self.session.close()
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -69,24 +69,19 @@ class Waifu(commands.Cog):
                 Get a random waifu image
                 """
                 
-                wf = waifuim.WaifuAioClient()
+                async with WaifuAioClient() as wf:
+                        
+                        image = await wf.search(is_nsfw='null')
+                        image_tag = image.tags[0].name
+                        image_description = image.description[0]
+                        image_url = str(image)
                 
-                image = await wf.search(
-                        is_nsfw='null'
-                )
+                        e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
+                        e.add_field(name='Tag', value=image_tag, inline=True)
+                        e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
+                        e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
-                image_url = str(image)
-                image_tag = image.tags[0].name
-                image_description = image.description[0]
-                
-                
-                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                e.add_field(name='Tag', value=image_tag, inline=True)
-                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
-                
-                await wf.close()
-                await ctx.send(embed=e)
+                        await ctx.send(embed=e)
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -95,24 +90,19 @@ class Waifu(commands.Cog):
                 Get a random waifu image by tag
                 """
                 
-                wf = waifuim.WaifuAioClient()
+                async with WaifuAioClient() as wf:
+                        
+                        image = await wf.search(included_tags='{}'.format(args), is_nsfw='null')
+                        image_tag = image.tags[0].name
+                        image_description = image.description[0]
+                        image_url = str(image)
                 
-                image = await wf.search(
-                        tags=['{}'.format(args)],
-                        is_nsfw='null'
-                )
+                        e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
+                        e.add_field(name='Tag', value=image_tag, inline=True)
+                        e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
+                        e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
-                image_url = str(image)
-                image_tag = image.tags[0].name
-                image_description = image.description[0]
-                
-                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                e.add_field(name='Tag', value=image_tag, inline=True)
-                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
-                
-                await wf.close()
-                await ctx.send(embed=e)
+                        await ctx.send(embed=e)
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -121,24 +111,19 @@ class Waifu(commands.Cog):
                 Get a random waifu gif
                 """
                 
-                wf = waifuim.WaifuAioClient()
+                async with WaifuAioClient() as wf:
+                        
+                        image = await wf.search(gif=True, is_nsfw='null')
+                        image_tag = image.tags[0].name
+                        image_description = image.description[0]
+                        image_url = str(image)
                 
-                image = await wf.search(
-                        gif=True,
-                        is_nsfw='null'
-                )
+                        e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
+                        e.add_field(name='Tag', value=image_tag, inline=True)
+                        e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
+                        e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
-                image_url = str(image)
-                image_tag = image.tags[0].name
-                image_description = image.description[0]
-                
-                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                e.add_field(name='Tag', value=image_tag, inline=True)
-                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
-                
-                await wf.close()
-                await ctx.send(embed=e)
+                        await ctx.send(embed=e)
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -147,24 +132,19 @@ class Waifu(commands.Cog):
                 Dump a bunch of random waifu images
                 """
                 
-                wf = waifuim.WaifuAioClient()
+                async with WaifuAioClient() as wf:
+                        
+                        image = await wf.search(many=True, is_nsfw='null')
+                        image_tag = image.tags[0].name
+                        image_description = image.description[0]
+                        image_url = str(image)
                 
-                image = await wf.search(
-                        many=True,
-                        is_nsfw='null'
-                )
+                        e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
+                        e.add_field(name='Tag', value=image_tag, inline=True)
+                        e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
+                        e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
-                image_url = str(image)
-                image_tag = image.tags[0].name
-                image_description = image.description[0]
-                
-                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                e.add_field(name='Tag', value=image_tag, inline=True)
-                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
-                
-                await wf.close()
-                await ctx.send(embed=e)
+                        await ctx.send(embed=e)
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -174,23 +154,19 @@ class Waifu(commands.Cog):
                 Get a random nsfw waifu image
                 """
                 
-                wf = waifuim.WaifuAioClient()
+                async with WaifuAioClient() as wf:
+                        
+                        image = await wf.search(is_nsfw=True)
+                        image_tag = image.tags[0].name
+                        image_description = image.description[0]
+                        image_url = str(image)
                 
-                image = await wf.search(
-                        is_nsfw=True
-                )
+                        e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
+                        e.add_field(name='Tag', value=image_tag, inline=True)
+                        e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
+                        e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
-                image_url = str(image)
-                image_tag = image.tags[0].name
-                image_description = image.description[0]
-                
-                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                e.add_field(name='Tag', value=image_tag, inline=True)
-                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
-                
-                await wf.close()
-                await ctx.send(embed=e)
+                        await ctx.send(embed=e)
                                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -200,24 +176,19 @@ class Waifu(commands.Cog):
                 Get a random nsfw waifu image by tag
                 """
                 
-                wf = waifuim.WaifuAioClient()
+                async with WaifuAioClient() as wf:
+                        
+                        image = await wf.search(included_tags='{}'.format(args), is_nsfw=True)
+                        image_tag = image.tags[0].name
+                        image_description = image.description[0]
+                        image_url = str(image)
                 
-                image = await wf.search(
-                        tags=['{}'.format(args)],
-                        is_nsfw=True
-                )
+                        e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
+                        e.add_field(name='Tag', value=image_tag, inline=True)
+                        e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
+                        e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
-                image_url = str(image)
-                image_tag = image.tags[0].name
-                image_description = image.description[0]
-                
-                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                e.add_field(name='Tag', value=image_tag, inline=True)
-                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
-                
-                await wf.close()
-                await ctx.send(embed=e)
+                        await ctx.send(embed=e)
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -227,24 +198,19 @@ class Waifu(commands.Cog):
                 Get a random nsfw waifu gif
                 """
                 
-                wf = waifuim.WaifuAioClient()
+                async with WaifuAioClient() as wf:
+                        
+                        image = await wf.search(gif=True, is_nsfw=True)
+                        image_tag = image.tags[0].name
+                        image_description = image.description[0]
+                        image_url = str(image)
                 
-                image = await wf.search(
-                        gif=True,
-                        is_nsfw=True
-                )
+                        e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
+                        e.add_field(name='Tag', value=image_tag, inline=True)
+                        e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
+                        e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
-                image_url = str(image)
-                image_tag = image.tags[0].name
-                image_description = image.description[0]
-                
-                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                e.add_field(name='Tag', value=image_tag, inline=True)
-                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
-                
-                await wf.close()
-                await ctx.send(embed=e)
+                        await ctx.send(embed=e)
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -254,21 +220,16 @@ class Waifu(commands.Cog):
                 Dump a bunch of random nsfw waifu images
                 """
                 
-                wf = waifuim.WaifuAioClient()
+                async with WaifuAioClient() as wf:
+                        
+                        image = await wf.search(many=True, is_nsfw=True)
+                        image_tag = image.tags[0].name
+                        image_description = image.description[0]
+                        image_url = str(image)
                 
-                image = await wf.search(
-                        many=True,
-                        is_nsfw=True
-                )
+                        e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
+                        e.add_field(name='Tag', value=image_tag, inline=True)
+                        e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
+                        e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
-                image_url = str(image)
-                image_tag = image.tags[0].name
-                image_description = image.description[0]
-                
-                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                e.add_field(name='Tag', value=image_tag, inline=True)
-                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
-                
-                await wf.close()
-                await ctx.send(embed=e)
+                        await ctx.send(embed=e)
