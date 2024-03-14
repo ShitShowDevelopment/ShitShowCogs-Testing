@@ -16,7 +16,7 @@ class WaifuIM(commands.Cog):
 
         def __init__(self, bot):
                 self.bot = bot
-                self.session: aiohttp.ClientSession = aiohttp.ClientSession()
+                self.session: aiohttp.ClientSession = aiohttp.ClientSession
                 
         async def cog_unload(self):
                 self.session.close()
@@ -31,7 +31,7 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'is_nsfw': 'false'}
                 
-                async with aiohttp.ClientSession() as cs:
+                async with aiohttp.ClientSession as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
@@ -83,7 +83,7 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'included_tags': '{}'.format(args), 'is_nsfw': 'false'}
                 
-                async with aiohttp.ClientSession() as cs:
+                async with aiohttp.ClientSession as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
@@ -123,7 +123,7 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'gif': 'true', 'is_nsfw': 'false'}
                 
-                async with aiohttp.ClientSession() as cs:
+                async with aiohttp.ClientSession as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
@@ -163,7 +163,7 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'many': 'true', 'is_nsfw': 'false'}
                 
-                async with aiohttp.ClientSession() as cs:
+                async with aiohttp.ClientSession as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
@@ -204,7 +204,7 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'is_nsfw': 'true'}
                 
-                async with aiohttp.ClientSession() as cs:
+                async with aiohttp.ClientSession as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
@@ -264,7 +264,7 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'included_tags': '{}'.format(args), 'is_nsfw': 'true'}
                 
-                async with aiohttp.ClientSession() as cs:
+                async with aiohttp.ClientSession as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
@@ -305,7 +305,7 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'gif': 'true', 'is_nsfw': 'true'}
                 
-                async with aiohttp.ClientSession() as cs:
+                async with aiohttp.ClientSession as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
@@ -350,7 +350,7 @@ class WaifuIM(commands.Cog):
                         }
                                 
                 
-                async with aiohttp.ClientSession() as cs:
+                async with aiohttp.ClientSession as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
