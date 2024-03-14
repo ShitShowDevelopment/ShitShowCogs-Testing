@@ -1,7 +1,13 @@
+from typing import Final
+
 import discord
 import aiohttp
 
 from redbot.core import commands
+from redbot.core.bot import Red
+
+footer_icon: Final[str]: 'https://avatars.githubusercontent.com/u/91619079?s=200&v=4'
+footer_text = 'Powered by Waifu.IM API'
 
 class WaifuIM(commands.Cog):
         """
@@ -33,15 +39,21 @@ class WaifuIM(commands.Cog):
                                 for image in data['images']:
                                         
                                         image_url = image['url']
-                                        image_tag = image['tags'][0]['name']
-                                        image_description = image['description'][0]
                                 
-                                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                                e.add_field(name='Tag', value=image_tag, inline=True)
-                                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
+                                        e = discord.Embed()
+                                        e.set_image(url=image_url)
+                                        e.set_footer(text=footer_text, icon_url=footer_icon)
+                                        e.color = await ctx.embed_color()
+                                        v = discord.ui.View()
+                                        s = discord.ButtonStyle.grey
+                                        i = discord.ui.Button(
+                                                style=s,
+                                                label='Open Image',
+                                                url=image_url
+                                        )
+                                        v.add_items(items=i)
                 
-                                await ctx.send(embed=e)
+                                        await ctx.send(embed=e, view=v)
                                 
         
         @commands.hybrid_command()
@@ -73,15 +85,21 @@ class WaifuIM(commands.Cog):
                                 for image in data['images']:
                                         
                                         image_url = image['url']
-                                        image_tag = image['tags'][0]['name']
-                                        image_description = image['description'][0]
                                 
-                                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                                e.add_field(name='Tag', value=image_tag, inline=True)
-                                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
+                                        e = discord.Embed()
+                                        e.set_image(url=image_url)
+                                        e.set_footer(text=footer_text, icon_url=footer_icon)
+                                        e.color = await ctx.embed_color()
+                                        v = discord.ui.View()
+                                        s = discord.ButtonStyle.grey
+                                        i = discord.ui.Button(
+                                                style=s,
+                                                label='Open Image',
+                                                url=image_url
+                                        )
+                                        v.add_items(items=i)
                 
-                                await ctx.send(embed=e)
+                                        await ctx.send(embed=e, view=v)
                                 
                 
         @commands.hybrid_command()
@@ -101,15 +119,21 @@ class WaifuIM(commands.Cog):
                                 for image in data['images']:
                                         
                                         image_url = image['url']
-                                        image_tag = image['tags'][0]['name']
-                                        image_description = image['description'][0]
                                 
-                                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                                e.add_field(name='Tag', value=image_tag, inline=True)
-                                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
+                                        e = discord.Embed()
+                                        e.set_image(url=image_url)
+                                        e.set_footer(text=footer_text, icon_url=footer_icon)
+                                        e.color = await ctx.embed_color()
+                                        v = discord.ui.View()
+                                        s = discord.ButtonStyle.grey
+                                        i = discord.ui.Button(
+                                                style=s,
+                                                label='Open Image',
+                                                url=image_url
+                                        )
+                                        v.add_items(items=i)
                 
-                                await ctx.send(embed=e)
+                                        await ctx.send(embed=e, view=v)
                                 
                 
         @commands.hybrid_command()
@@ -129,15 +153,21 @@ class WaifuIM(commands.Cog):
                                 for image in data['images']:
                                         
                                         image_url = image['url']
-                                        image_tag = image['tags'][0]['name']
-                                        image_description = image['description'][0]
                                 
-                                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                                e.add_field(name='Tag', value=image_tag, inline=True)
-                                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
+                                        e = discord.Embed()
+                                        e.set_image(url=image_url)
+                                        e.set_footer(text=footer_text, icon_url=footer_icon)
+                                        e.color = await ctx.embed_color()
+                                        v = discord.ui.View()
+                                        s = discord.ButtonStyle.grey
+                                        i = discord.ui.Button(
+                                                style=s,
+                                                label='Open Image',
+                                                url=image_url
+                                        )
+                                        v.add_items(items=i)
                 
-                                await ctx.send(embed=e)
+                                        await ctx.send(embed=e, view=v)
                                 
                 
         @commands.hybrid_command()
@@ -154,20 +184,25 @@ class WaifuIM(commands.Cog):
                 async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
-                                
                                 data = await response.json()
                                 for image in data['images']:
                                         
                                         image_url = image['url']
-                                        image_tag = image['tags'][0]['name']
-                                        image_description = image['description'][0]
                                 
-                                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                                e.add_field(name='Tag', value=image_tag, inline=True)
-                                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
+                                        e = discord.Embed()
+                                        e.set_image(url=image_url)
+                                        e.set_footer(text=footer_text, icon_url=footer_icon)
+                                        e.color = await ctx.embed_color()
+                                        v = discord.ui.View()
+                                        s = discord.ButtonStyle.grey
+                                        i = discord.ui.Button(
+                                                style=s,
+                                                label='Open Image',
+                                                url=image_url
+                                        )
+                                        v.add_items(items=i)
                 
-                                await ctx.send(embed=e)
+                                        await ctx.send(embed=e, view=v)
                                 
                                 
         @commands.hybrid_command()
@@ -202,21 +237,25 @@ class WaifuIM(commands.Cog):
                 async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
-                                
-                                
                                 data = await response.json()
                                 for image in data['images']:
                                         
                                         image_url = image['url']
-                                        image_tag = image['tags'][0]['name']
-                                        image_description = image['description'][0]
                                 
-                                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                                e.add_field(name='Tag', value=image_tag, inline=True)
-                                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
+                                        e = discord.Embed()
+                                        e.set_image(url=image_url)
+                                        e.set_footer(text=footer_text, icon_url=footer_icon)
+                                        e.color = await ctx.embed_color()
+                                        v = discord.ui.View()
+                                        s = discord.ButtonStyle.grey
+                                        i = discord.ui.Button(
+                                                style=s,
+                                                label='Open Image',
+                                                url=image_url
+                                        )
+                                        v.add_items(items=i)
                 
-                                await ctx.send(embed=e)
+                                        await ctx.send(embed=e, view=v)
                                 
                 
         @commands.hybrid_command()
@@ -237,15 +276,21 @@ class WaifuIM(commands.Cog):
                                 for image in data['images']:
                                         
                                         image_url = image['url']
-                                        image_tag = image['tags'][0]['name']
-                                        image_description = image['description'][0]
                                 
-                                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                                e.add_field(name='Tag', value=image_tag, inline=True)
-                                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
+                                        e = discord.Embed()
+                                        e.set_image(url=image_url)
+                                        e.set_footer(text=footer_text, icon_url=footer_icon)
+                                        e.color = await ctx.embed_color()
+                                        v = discord.ui.View()
+                                        s = discord.ButtonStyle.grey
+                                        i = discord.ui.Button(
+                                                style=s,
+                                                label='Open Image',
+                                                url=image_url
+                                        )
+                                        v.add_items(items=i)
                 
-                                await ctx.send(embed=e)
+                                        await ctx.send(embed=e, view=v)
                                 
                 
         @commands.hybrid_command()
@@ -266,17 +311,22 @@ class WaifuIM(commands.Cog):
                 async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
-
                                 data = await response.json()
                                 for image in data['images']:
                                         
                                         image_url = image['url']
-                                        image_tag = image['tags'][0]['name']
-                                        image_description = image['description'][0]
                                 
-                                e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
-                                e.add_field(name='Tag', value=image_tag, inline=True)
-                                e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
-                                e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
+                                        e = discord.Embed()
+                                        e.set_image(url=image_url)
+                                        e.set_footer(text=footer_text, icon_url=footer_icon)
+                                        e.color = await ctx.embed_color()
+                                        v = discord.ui.View()
+                                        s = discord.ButtonStyle.grey
+                                        i = discord.ui.Button(
+                                                style=s,
+                                                label='Open Image',
+                                                url=image_url
+                                        )
+                                        v.add_items(items=i)
                 
-                                await ctx.send(embed=e)
+                                        await ctx.send(embed=e, view=v)
