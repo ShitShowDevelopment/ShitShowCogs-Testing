@@ -38,17 +38,11 @@ class WaifuIM(commands.Cog):
                             for image in data['images']:
                                     
                                     image = image['url']
-                                    description = image['description']
-                                    tag = image['tags'][0]['name']
-                                    date = image['uploaded_at']
-                                    color = image['dominant_color']
                                     
-                                    embed = discord.Embed(description=description)
-                                    embed.add_field(name='Tag', value=tag, inline=True)
-                                    embed.add_filed(name='Upload Date', value=date, inline=True)
+                                    embed = discord.Embed()
                                     embed.set_image(url=image)
                                     embed.set_footer(text=footer_text, icon_url=footer_icon)
-                                    embed.color(color)
+                                    embed.color = await ctx.embed_color()
                                     view = discord.ui.View()
                                     style = discord.ButtonStyle.grey
                                     button = discord.ui.Button(
@@ -89,17 +83,11 @@ class WaifuIM(commands.Cog):
                             for image in data['images']:
                                     
                                     image = image['url']
-                                    description = image['description']
-                                    tag = image['tags'][0]['name']
-                                    date = image['uploaded_at']
-                                    color = image['dominant_color']
                                     
-                                    embed = discord.Embed(description=description)
-                                    embed.add_field(name='Tag', value=tag, inline=True)
-                                    embed.add_filed(name='Upload Date', value=date, inline=True)
+                                    embed = discord.Embed()
                                     embed.set_image(url=image)
                                     embed.set_footer(text=footer_text, icon_url=footer_icon)
-                                    embed.color(color)
+                                    embed.color = await ctx.embed_color()
                                     view = discord.ui.View()
                                     style = discord.ButtonStyle.grey
                                     button = discord.ui.Button(
@@ -129,17 +117,11 @@ class WaifuIM(commands.Cog):
                             for image in data['images']:
                                     
                                     image = image['url']
-                                    description = image['description']
-                                    tag = image['tags'][0]['name']
-                                    date = image['uploaded_at']
-                                    color = image['dominant_color']
                                     
-                                    embed = discord.Embed(description=description)
-                                    embed.add_field(name='Tag', value=tag, inline=True)
-                                    embed.add_filed(name='Upload Date', value=date, inline=True)
+                                    embed = discord.Embed()
                                     embed.set_image(url=image)
                                     embed.set_footer(text=footer_text, icon_url=footer_icon)
-                                    embed.color(color)
+                                    embed.color = await ctx.embed_color()
                                     view = discord.ui.View()
                                     style = discord.ButtonStyle.grey
                                     button = discord.ui.Button(
@@ -169,17 +151,11 @@ class WaifuIM(commands.Cog):
                             for image in data['images']:
                                     
                                     image = image['url']
-                                    description = image['description']
-                                    tag = image['tags'][0]['name']
-                                    date = image['uploaded_at']
-                                    color = image['dominant_color']
                                     
-                                    embed = discord.Embed(description=description)
-                                    embed.add_field(name='Tag', value=tag, inline=True)
-                                    embed.add_filed(name='Upload Date', value=date, inline=True)
+                                    embed = discord.Embed()
                                     embed.set_image(url=image)
                                     embed.set_footer(text=footer_text, icon_url=footer_icon)
-                                    embed.color(color)
+                                    embed.color = await ctx.embed_color()
                                     view = discord.ui.View()
                                     style = discord.ButtonStyle.grey
                                     button = discord.ui.Button(
@@ -210,17 +186,11 @@ class WaifuIM(commands.Cog):
                             for image in data['images']:
                                     
                                     image = image['url']
-                                    description = image['description']
-                                    tag = image['tags'][0]['name']
-                                    date = image['uploaded_at']
-                                    color = image['dominant_color']
-                                
-                                    embed = discord.Embed(description=description)
-                                    embed.add_field(name='Tag', value=tag, inline=True)
-                                    embed.add_filed(name='Upload Date', value=date, inline=True)
+                                    
+                                    embed = discord.Embed()
                                     embed.set_image(url=image)
                                     embed.set_footer(text=footer_text, icon_url=footer_icon)
-                                    embed.color(color)
+                                    embed.color = await ctx.embed_color()
                                     view = discord.ui.View()
                                     style = discord.ButtonStyle.grey
                                     button = discord.ui.Button(
@@ -229,6 +199,8 @@ class WaifuIM(commands.Cog):
                                             url=image
                                     )
                                     view.add_item(items=button)
+                
+                                    await ctx.send(embed=embed, view=view)
                 
                                     await ctx.send(embed=embed, view=view)
                                 
@@ -270,17 +242,11 @@ class WaifuIM(commands.Cog):
                             for image in data['images']:
                                     
                                     image = image['url']
-                                    description = image['description']
-                                    tag = image['tags'][0]['name']
-                                    date = image['uploaded_at']
-                                    color = image['dominant_color']
-                                
-                                    embed = discord.Embed(description=description)
-                                    embed.add_field(name='Tag', value=tag, inline=True)
-                                    embed.add_filed(name='Upload Date', value=date, inline=True)
+                                    
+                                    embed = discord.Embed()
                                     embed.set_image(url=image)
                                     embed.set_footer(text=footer_text, icon_url=footer_icon)
-                                    embed.color(color)
+                                    embed.color = await ctx.embed_color()
                                     view = discord.ui.View()
                                     style = discord.ButtonStyle.grey
                                     button = discord.ui.Button(
@@ -311,17 +277,11 @@ class WaifuIM(commands.Cog):
                             for image in data['images']:
                                     
                                     image = image['url']
-                                    description = image['description']
-                                    tag = image['tags'][0]['name']
-                                    date = image['uploaded_at']
-                                    color = image['dominant_color']
-                                
-                                    embed = discord.Embed(description=description)
-                                    embed.add_field(name='Tag', value=tag, inline=True)
-                                    embed.add_filed(name='Upload Date', value=date, inline=True)
+                                    
+                                    embed = discord.Embed()
                                     embed.set_image(url=image)
                                     embed.set_footer(text=footer_text, icon_url=footer_icon)
-                                    embed.color(color)
+                                    embed.color = await ctx.embed_color()
                                     view = discord.ui.View()
                                     style = discord.ButtonStyle.grey
                                     button = discord.ui.Button(
@@ -352,17 +312,11 @@ class WaifuIM(commands.Cog):
                             for image in data['images']:
                                     
                                     image = image['url']
-                                    description = image['description']
-                                    tag = image['tags'][0]['name']
-                                    date = image['uploaded_at']
-                                    color = image['dominant_color']
-                                
-                                    embed = discord.Embed(description=description)
-                                    embed.add_field(name='Tag', value=tag, inline=True)
-                                    embed.add_filed(name='Upload Date', value=date, inline=True)
+                                    
+                                    embed = discord.Embed()
                                     embed.set_image(url=image)
                                     embed.set_footer(text=footer_text, icon_url=footer_icon)
-                                    embed.color(color)
+                                    embed.color = await ctx.embed_color()
                                     view = discord.ui.View()
                                     style = discord.ButtonStyle.grey
                                     button = discord.ui.Button(
