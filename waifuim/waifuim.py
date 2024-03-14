@@ -1,8 +1,7 @@
 import discord
-import asyncio
+import waifuim
 
 from redbot.core import commands
-from waifuim import WaifuAioClient
 
 class Waifu(commands.Cog):
         """
@@ -11,7 +10,7 @@ class Waifu(commands.Cog):
 
         def __init__(self, bot):
                 self.bot = bot
-                self.session = WaifuAioClient()
+                self.session = waifuim.WaifuAioClient()
                 
                 async def cog_unload(self) -> None:
                         self.session.close()
@@ -70,11 +69,11 @@ class Waifu(commands.Cog):
                 Get a random waifu image
                 """
                 
-                wf = WaifuAioClient(
+                wf = waifuim.WaifuAioClient()
+                
+                image = await wf.search(
                         is_nsfw='null'
                 )
-                
-                image = await wf.search()
                 
                 image_url = str(image)
                 image_tag = image.tags[0].name
@@ -96,12 +95,12 @@ class Waifu(commands.Cog):
                 Get a random waifu image by tag
                 """
                 
-                wf = WaifuAioClient(
+                wf = waifuim.WaifuAioClient()
+                
+                image = await wf.search(
                         tags=['{}'.format(args)],
                         is_nsfw='null'
                 )
-                
-                image = await wf.search()
                 
                 image_url = str(image)
                 image_tag = image.tags[0].name
@@ -122,12 +121,12 @@ class Waifu(commands.Cog):
                 Get a random waifu gif
                 """
                 
-                wf = WaifuAioClient(
+                wf = waifuim.WaifuAioClient()
+                
+                image = await wf.search(
                         gif=True,
                         is_nsfw='null'
                 )
-                
-                image = await wf.search()
                 
                 image_url = str(image)
                 image_tag = image.tags[0].name
@@ -148,12 +147,12 @@ class Waifu(commands.Cog):
                 Dump a bunch of random waifu images
                 """
                 
-                wf = WaifuAioClient(
+                wf = waifuim.WaifuAioClient()
+                
+                image = await wf.search(
                         many=True,
                         is_nsfw='null'
                 )
-                
-                image = await wf.search()
                 
                 image_url = str(image)
                 image_tag = image.tags[0].name
@@ -175,11 +174,11 @@ class Waifu(commands.Cog):
                 Get a random nsfw waifu image
                 """
                 
-                wf = WaifuAioClient(
+                wf = waifuim.WaifuAioClient()
+                
+                image = await wf.search(
                         is_nsfw=True
                 )
-                
-                image = await wf.search()
                 
                 image_url = str(image)
                 image_tag = image.tags[0].name
@@ -201,12 +200,12 @@ class Waifu(commands.Cog):
                 Get a random nsfw waifu image by tag
                 """
                 
-                wf = WaifuAioClient(
+                wf = waifuim.WaifuAioClient()
+                
+                image = await wf.search(
                         tags=['{}'.format(args)],
                         is_nsfw=True
                 )
-                
-                image = await wf.search()
                 
                 image_url = str(image)
                 image_tag = image.tags[0].name
@@ -228,12 +227,12 @@ class Waifu(commands.Cog):
                 Get a random nsfw waifu gif
                 """
                 
-                wf = WaifuAioClient(
+                wf = waifuim.WaifuAioClient()
+                
+                image = await wf.search(
                         gif=True,
                         is_nsfw=True
                 )
-                
-                image = await wf.search()
                 
                 image_url = str(image)
                 image_tag = image.tags[0].name
@@ -255,12 +254,12 @@ class Waifu(commands.Cog):
                 Dump a bunch of random nsfw waifu images
                 """
                 
-                wf = WaifuAioClient(
+                wf = waifuim.WaifuAioClient()
+                
+                image = await wf.search(
                         many=True,
                         is_nsfw=True
                 )
-                
-                image = await wf.search()
                 
                 image_url = str(image)
                 image_tag = image.tags[0].name
