@@ -16,11 +16,10 @@ class WaifuIM(commands.Cog):
 
         def __init__(self, bot):
                 self.bot = bot
-                self.session: aiohttp.ClientSession = aiohttp.ClientSession
+                self.session: aiohttp.ClientSession = aiohttp.ClientSession()
                 
-        async def cog_unload(self) -> None:
+        async def cog_unload(self):
                 self.session.close()
-                
         
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -32,33 +31,39 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'is_nsfw': 'false'}
                 
-                async with aiohttp.ClientSession as cs:
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
                                 for image in data['images']:
                                         
-                                        image_url = image['url']
+                                        image = image['url']
+                                        description = image['description']
+                                        tag = image['tags'][0]['name']
+                                        date = image['uploaded_at']
+                                        color = image['dominant_color']
                                 
-                                        e = discord.Embed()
-                                        e.set_image(url=image_url)
-                                        e.set_footer(text=footer_text, icon_url=footer_icon)
-                                        e.color = await ctx.embed_color()
-                                        v = discord.ui.View()
-                                        s = discord.ButtonStyle.grey
-                                        i = discord.ui.Button(
-                                                style=s,
+                                        embed = discord.Embed(description=description)
+                                        embed.add_field(name='Tag', value=tag, inline=True)
+                                        embed.add_filed(name='Upload Date', value=date, inline=True)
+                                        embed.set_image(url=image)
+                                        embed.set_footer(text=footer_text, icon_url=footer_icon)
+                                        embed.color(color)
+                                        view = discord.ui.View()
+                                        style = discord.ButtonStyle.grey
+                                        button = discord.ui.Button(
+                                                style=style,
                                                 label='Open Image',
-                                                url=image_url
+                                                url=image
                                         )
-                                        v.add_item(items=i)
+                                        view.add_item(items=button)
                 
-                                        await ctx.send(embed=e, view=v)
+                                        await ctx.send(embed=embed, view=view)
                                 
         
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
-        async def tag(self, *args: input, ctx):
+        async def tag(self, args: input, ctx):
                 """
                 Get a random waifu image by tag
                 
@@ -78,28 +83,34 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'included_tags': '{}'.format(args), 'is_nsfw': 'false'}
                 
-                async with aiohttp.ClientSession as cs:
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
                                 for image in data['images']:
                                         
-                                        image_url = image['url']
+                                        image = image['url']
+                                        description = image['description']
+                                        tag = image['tags'][0]['name']
+                                        date = image['uploaded_at']
+                                        color = image['dominant_color']
                                 
-                                        e = discord.Embed()
-                                        e.set_image(url=image_url)
-                                        e.set_footer(text=footer_text, icon_url=footer_icon)
-                                        e.color = await ctx.embed_color()
-                                        v = discord.ui.View()
-                                        s = discord.ButtonStyle.grey
-                                        i = discord.ui.Button(
-                                                style=s,
+                                        embed = discord.Embed(description=description)
+                                        embed.add_field(name='Tag', value=tag, inline=True)
+                                        embed.add_filed(name='Upload Date', value=date, inline=True)
+                                        embed.set_image(url=image)
+                                        embed.set_footer(text=footer_text, icon_url=footer_icon)
+                                        embed.color(color)
+                                        view = discord.ui.View()
+                                        style = discord.ButtonStyle.grey
+                                        button = discord.ui.Button(
+                                                style=style,
                                                 label='Open Image',
-                                                url=image_url
+                                                url=image
                                         )
-                                        v.add_item(items=i)
+                                        view.add_item(items=button)
                 
-                                        await ctx.send(embed=e, view=v)
+                                        await ctx.send(embed=embed, view=view)
                                 
                 
         @commands.hybrid_command()
@@ -112,28 +123,34 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'gif': 'true', 'is_nsfw': 'false'}
                 
-                async with aiohttp.ClientSession as cs:
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
                                 for image in data['images']:
                                         
-                                        image_url = image['url']
+                                        image = image['url']
+                                        description = image['description']
+                                        tag = image['tags'][0]['name']
+                                        date = image['uploaded_at']
+                                        color = image['dominant_color']
                                 
-                                        e = discord.Embed()
-                                        e.set_image(url=image_url)
-                                        e.set_footer(text=footer_text, icon_url=footer_icon)
-                                        e.color = await ctx.embed_color()
-                                        v = discord.ui.View()
-                                        s = discord.ButtonStyle.grey
-                                        i = discord.ui.Button(
-                                                style=s,
+                                        embed = discord.Embed(description=description)
+                                        embed.add_field(name='Tag', value=tag, inline=True)
+                                        embed.add_filed(name='Upload Date', value=date, inline=True)
+                                        embed.set_image(url=image)
+                                        embed.set_footer(text=footer_text, icon_url=footer_icon)
+                                        embed.color(color)
+                                        view = discord.ui.View()
+                                        style = discord.ButtonStyle.grey
+                                        button = discord.ui.Button(
+                                                style=style,
                                                 label='Open Image',
-                                                url=image_url
+                                                url=image
                                         )
-                                        v.add_item(items=i)
+                                        view.add_item(items=button)
                 
-                                        await ctx.send(embed=e, view=v)
+                                        await ctx.send(embed=embed, view=view)
                                 
                 
         @commands.hybrid_command()
@@ -146,28 +163,34 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'many': 'true', 'is_nsfw': 'false'}
                 
-                async with aiohttp.ClientSession as cs:
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
                                 for image in data['images']:
                                         
-                                        image_url = image['url']
+                                        image = image['url']
+                                        description = image['description']
+                                        tag = image['tags'][0]['name']
+                                        date = image['uploaded_at']
+                                        color = image['dominant_color']
                                 
-                                        e = discord.Embed()
-                                        e.set_image(url=image_url)
-                                        e.set_footer(text=footer_text, icon_url=footer_icon)
-                                        e.color = await ctx.embed_color()
-                                        v = discord.ui.View()
-                                        s = discord.ButtonStyle.grey
-                                        i = discord.ui.Button(
-                                                style=s,
+                                        embed = discord.Embed(description=description)
+                                        embed.add_field(name='Tag', value=tag, inline=True)
+                                        embed.add_filed(name='Upload Date', value=date, inline=True)
+                                        embed.set_image(url=image)
+                                        embed.set_footer(text=footer_text, icon_url=footer_icon)
+                                        embed.color(color)
+                                        view = discord.ui.View()
+                                        style = discord.ButtonStyle.grey
+                                        button = discord.ui.Button(
+                                                style=style,
                                                 label='Open Image',
-                                                url=image_url
+                                                url=image
                                         )
-                                        v.add_item(items=i)
+                                        view.add_item(items=button)
                 
-                                        await ctx.send(embed=e, view=v)
+                                        await ctx.send(embed=embed, view=view)
                                 
                 
         @commands.hybrid_command()
@@ -181,33 +204,40 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'is_nsfw': 'true'}
                 
-                async with aiohttp.ClientSession as cs:
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
                                 for image in data['images']:
                                         
-                                        image_url = image['url']
+                                        image = image['url']
+                                        description = image['description']
+                                        tag = image['tags'][0]['name']
+                                        date = image['uploaded_at']
+                                        color = image['dominant_color']
                                 
-                                        e = discord.Embed()
-                                        e.set_image(url=image_url)
-                                        e.set_footer(text=footer_text, icon_url=footer_icon)
-                                        e.color = await ctx.embed_color()
-                                        v = discord.ui.View()
-                                        s = discord.ButtonStyle.grey
-                                        i = discord.ui.Button(
-                                                style=s,
+                                        embed = discord.Embed(description=description)
+                                        embed.add_field(name='Tag', value=tag, inline=True)
+                                        embed.add_filed(name='Upload Date', value=date, inline=True)
+                                        embed.set_image(url=image)
+                                        embed.set_footer(text=footer_text, icon_url=footer_icon)
+                                        embed.color(color)
+                                        view = discord.ui.View()
+                                        style = discord.ButtonStyle.grey
+                                        button = discord.ui.Button(
+                                                style=style,
                                                 label='Open Image',
-                                                url=image_url
+                                                url=image
                                         )
-                                        v.add_item(items=i)
+                                        view.add_item(items=button)
                 
-                                        await ctx.send(embed=e, view=v)
+                                        await ctx.send(embed=embed, view=view)
                                 
                                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
-        async def ntag(self, *args: input, ctx):
+        @commands.is_nsfw()
+        async def ntag(self, args: input, ctx):
                 """
                 Get a random nsfw waifu image by tag
                 
@@ -234,28 +264,34 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'included_tags': '{}'.format(args), 'is_nsfw': 'true'}
                 
-                async with aiohttp.ClientSession as cs:
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
                                 for image in data['images']:
                                         
-                                        image_url = image['url']
+                                        image = image['url']
+                                        description = image['description']
+                                        tag = image['tags'][0]['name']
+                                        date = image['uploaded_at']
+                                        color = image['dominant_color']
                                 
-                                        e = discord.Embed()
-                                        e.set_image(url=image_url)
-                                        e.set_footer(text=footer_text, icon_url=footer_icon)
-                                        e.color = await ctx.embed_color()
-                                        v = discord.ui.View()
-                                        s = discord.ButtonStyle.grey
-                                        i = discord.ui.Button(
-                                                style=s,
+                                        embed = discord.Embed(description=description)
+                                        embed.add_field(name='Tag', value=tag, inline=True)
+                                        embed.add_filed(name='Upload Date', value=date, inline=True)
+                                        embed.set_image(url=image)
+                                        embed.set_footer(text=footer_text, icon_url=footer_icon)
+                                        embed.color(color)
+                                        view = discord.ui.View()
+                                        style = discord.ButtonStyle.grey
+                                        button = discord.ui.Button(
+                                                style=style,
                                                 label='Open Image',
-                                                url=image_url
+                                                url=image
                                         )
-                                        v.add_item(items=i)
+                                        view.add_item(items=button)
                 
-                                        await ctx.send(embed=e, view=v)
+                                        await ctx.send(embed=embed, view=view)
                                 
                 
         @commands.hybrid_command()
@@ -269,28 +305,34 @@ class WaifuIM(commands.Cog):
                 url = 'https://api.waifu.im/search'
                 params = {'gif': 'true', 'is_nsfw': 'true'}
                 
-                async with aiohttp.ClientSession as cs:
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
                                 for image in data['images']:
                                         
-                                        image_url = image['url']
+                                        image = image['url']
+                                        description = image['description']
+                                        tag = image['tags'][0]['name']
+                                        date = image['uploaded_at']
+                                        color = image['dominant_color']
                                 
-                                        e = discord.Embed()
-                                        e.set_image(url=image_url)
-                                        e.set_footer(text=footer_text, icon_url=footer_icon)
-                                        e.color = await ctx.embed_color()
-                                        v = discord.ui.View()
-                                        s = discord.ButtonStyle.grey
-                                        i = discord.ui.Button(
-                                                style=s,
+                                        embed = discord.Embed(description=description)
+                                        embed.add_field(name='Tag', value=tag, inline=True)
+                                        embed.add_filed(name='Upload Date', value=date, inline=True)
+                                        embed.set_image(url=image)
+                                        embed.set_footer(text=footer_text, icon_url=footer_icon)
+                                        embed.color(color)
+                                        view = discord.ui.View()
+                                        style = discord.ButtonStyle.grey
+                                        button = discord.ui.Button(
+                                                style=style,
                                                 label='Open Image',
-                                                url=image_url
+                                                url=image
                                         )
-                                        v.add_item(items=i)
+                                        view.add_item(items=button)
                 
-                                        await ctx.send(embed=e, view=v)
+                                        await ctx.send(embed=embed, view=view)
                                 
                 
         @commands.hybrid_command()
@@ -308,25 +350,31 @@ class WaifuIM(commands.Cog):
                         }
                                 
                 
-                async with aiohttp.ClientSession as cs:
+                async with aiohttp.ClientSession() as cs:
                         async with cs.get(url, params=params) as response:
                                 
                                 data = await response.json()
                                 for image in data['images']:
                                         
-                                        image_url = image['url']
+                                        image = image['url']
+                                        description = image['description']
+                                        tag = image['tags'][0]['name']
+                                        date = image['uploaded_at']
+                                        color = image['dominant_color']
                                 
-                                        e = discord.Embed()
-                                        e.set_image(url=image_url)
-                                        e.set_footer(text=footer_text, icon_url=footer_icon)
-                                        e.color = await ctx.embed_color()
-                                        v = discord.ui.View()
-                                        s = discord.ButtonStyle.grey
-                                        i = discord.ui.Button(
-                                                style=s,
+                                        embed = discord.Embed(description=description)
+                                        embed.add_field(name='Tag', value=tag, inline=True)
+                                        embed.add_filed(name='Upload Date', value=date, inline=True)
+                                        embed.set_image(url=image)
+                                        embed.set_footer(text=footer_text, icon_url=footer_icon)
+                                        embed.color(color)
+                                        view = discord.ui.View()
+                                        style = discord.ButtonStyle.grey
+                                        button = discord.ui.Button(
+                                                style=style,
                                                 label='Open Image',
-                                                url=image_url
+                                                url=image
                                         )
-                                        v.add_item(items=i)
+                                        view.add_item(items=button)
                 
-                                        await ctx.send(embed=e, view=v)
+                                        await ctx.send(embed=embed, view=view)
