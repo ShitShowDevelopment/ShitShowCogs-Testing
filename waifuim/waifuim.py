@@ -21,7 +21,7 @@ class WaifuIM(commands.Cog):
     async def cog_unload(self):
             self.session.close()
         
-    @commands.command()
+    @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     async def random(self, ctx):
             """
@@ -61,7 +61,7 @@ class WaifuIM(commands.Cog):
                                     await ctx.send(embed=embed, view=view)
                                 
         
-    @commands.command()
+    @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     async def tag(self, args: input, ctx):
             """
@@ -112,7 +112,7 @@ class WaifuIM(commands.Cog):
                                     await ctx.send(embed=embed, view=view)
                                 
                 
-    @commands.command()
+    @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     async def gif(self, ctx):
             """
@@ -152,7 +152,7 @@ class WaifuIM(commands.Cog):
                                     await ctx.send(embed=embed, view=view)
                                 
                 
-    @commands.command()
+    @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     async def dump(self, ctx):
             """
@@ -192,7 +192,7 @@ class WaifuIM(commands.Cog):
                                     await ctx.send(embed=embed, view=view)
                                 
                 
-    @commands.command()
+    @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     @commands.is_nsfw()
     async def nrandom(self, ctx):
@@ -233,7 +233,7 @@ class WaifuIM(commands.Cog):
                                     await ctx.send(embed=embed, view=view)
                                 
                                 
-    @commands.command()
+    @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     @commands.is_nsfw()
     async def ntag(self, args: input, ctx):
@@ -293,7 +293,7 @@ class WaifuIM(commands.Cog):
                                     await ctx.send(embed=embed, view=view)
                                 
                 
-    @commands.command()
+    @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     @commands.is_nsfw()
     async def ngif(self, ctx):
@@ -334,7 +334,7 @@ class WaifuIM(commands.Cog):
                                     await ctx.send(embed=embed, view=view)
                                 
                 
-    @commands.command()
+    @commands.hybrid_command()
     @commands.bot_has_permissions(send_messages=True, embed_links=True)
     @commands.is_nsfw()
     async def ndump(self, ctx):
