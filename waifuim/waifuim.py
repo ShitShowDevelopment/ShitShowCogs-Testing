@@ -1,4 +1,5 @@
 import discord
+import asyncio
 
 from redbot.core import commands
 from waifuim import WaifuAioClient
@@ -10,6 +11,10 @@ class Waifu(commands.Cog):
 
         def __init__(self, bot):
                 self.bot = bot
+                self.session = WaifuAioClient()
+                
+                async def cog_unload(self) -> None:
+                        self.session.close()
                 
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
@@ -17,6 +22,7 @@ class Waifu(commands.Cog):
                 """
                 Get the help message for the WaifuIm command
                 """
+                
                 
                 versatile_tags = '```yml{}```'.format(
                         '\n - waifu: Get a random waifu image',
@@ -74,11 +80,13 @@ class Waifu(commands.Cog):
                 image_tag = image.tags[0].name
                 image_description = image.description[0]
                 
+                
                 e = discord.Embed(description='{}'.format(image_description), color=discord.Color.blue())
                 e.add_field(name='Tag', value=image_tag, inline=True)
                 e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
                 e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
+                await wf.close()
                 await ctx.send(embed=e)
                 
         @commands.hybrid_command()
@@ -104,6 +112,7 @@ class Waifu(commands.Cog):
                 e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
                 e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
+                await wf.close()
                 await ctx.send(embed=e)
                 
         @commands.hybrid_command()
@@ -129,6 +138,7 @@ class Waifu(commands.Cog):
                 e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
                 e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
+                await wf.close()
                 await ctx.send(embed=e)
                 
         @commands.hybrid_command()
@@ -154,6 +164,7 @@ class Waifu(commands.Cog):
                 e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
                 e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
+                await wf.close()
                 await ctx.send(embed=e)
                 
         @commands.hybrid_command()
@@ -179,8 +190,9 @@ class Waifu(commands.Cog):
                 e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
                 e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
+                await wf.close()
                 await ctx.send(embed=e)
-                
+                                
         @commands.hybrid_command()
         @commands.bot_has_permissions(send_messages=True, embed_links=True)
         @commands.is_nsfw()
@@ -205,6 +217,7 @@ class Waifu(commands.Cog):
                 e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
                 e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
+                await wf.close()
                 await ctx.send(embed=e)
                 
         @commands.hybrid_command()
@@ -231,6 +244,7 @@ class Waifu(commands.Cog):
                 e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
                 e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
+                await wf.close()
                 await ctx.send(embed=e)
                 
         @commands.hybrid_command()
@@ -257,4 +271,5 @@ class Waifu(commands.Cog):
                 e.add_field(name='Direct Link', value='[Open in Browser][{}]'.format(image_url), inline=True)
                 e.set_footer(text='Requested by {}'.format(ctx.author.display_name, icon_url=ctx.author.avatar_url))
                 
+                await wf.close()
                 await ctx.send(embed=e)
