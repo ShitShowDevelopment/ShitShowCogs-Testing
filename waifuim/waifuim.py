@@ -51,7 +51,7 @@ class WaifuIM(commands.Cog):
                                                 label='Open Image',
                                                 url=image_url
                                         )
-                                        v.add_items(items=i)
+                                        v.add_item(items=i)
                 
                                         await ctx.send(embed=e, view=v)
                                 
@@ -97,7 +97,7 @@ class WaifuIM(commands.Cog):
                                                 label='Open Image',
                                                 url=image_url
                                         )
-                                        v.add_items(items=i)
+                                        v.add_item(items=i)
                 
                                         await ctx.send(embed=e, view=v)
                                 
@@ -131,7 +131,7 @@ class WaifuIM(commands.Cog):
                                                 label='Open Image',
                                                 url=image_url
                                         )
-                                        v.add_items(items=i)
+                                        v.add_item(items=i)
                 
                                         await ctx.send(embed=e, view=v)
                                 
@@ -165,7 +165,7 @@ class WaifuIM(commands.Cog):
                                                 label='Open Image',
                                                 url=image_url
                                         )
-                                        v.add_items(items=i)
+                                        v.add_item(items=i)
                 
                                         await ctx.send(embed=e, view=v)
                                 
@@ -200,7 +200,7 @@ class WaifuIM(commands.Cog):
                                                 label='Open Image',
                                                 url=image_url
                                         )
-                                        v.add_items(items=i)
+                                        v.add_item(items=i)
                 
                                         await ctx.send(embed=e, view=v)
                                 
@@ -253,7 +253,7 @@ class WaifuIM(commands.Cog):
                                                 label='Open Image',
                                                 url=image_url
                                         )
-                                        v.add_items(items=i)
+                                        v.add_item(items=i)
                 
                                         await ctx.send(embed=e, view=v)
                                 
@@ -288,7 +288,7 @@ class WaifuIM(commands.Cog):
                                                 label='Open Image',
                                                 url=image_url
                                         )
-                                        v.add_items(items=i)
+                                        v.add_item(items=i)
                 
                                         await ctx.send(embed=e, view=v)
                                 
@@ -327,6 +327,6 @@ class WaifuIM(commands.Cog):
                                                 label='Open Image',
                                                 url=image_url
                                         )
-                                        v.add_items(items=i)
+                                        v.add_item(items=i)
                 
                                         await ctx.send(embed=e, view=v)
